@@ -5,10 +5,7 @@ import com.example.demoprojectcodedeploy.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,11 @@ private final EmployeeService employeeService;
     public ResponseEntity<List<Employee>> getAllEmployees()
     {
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.getAllEmployees());
+    }
+
+    @GetMapping("/employees/employeeId")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("employeeId") int employeeId)
+    {
+        return ResponseEntity.ok(employeeService.getEmployeeById(employeeId));
     }
 }
